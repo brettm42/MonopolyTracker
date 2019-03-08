@@ -66,7 +66,7 @@ namespace MonopolyTracker.Server.Services.BoardService
 
             Console.WriteLine(test);
 
-            return new Result { Successful = true, Message = test.Text + test.Result };
+            return new Result { Successful = test.Result.Successful, Message = test.Text + test.Result.Message };
         }
 
         public Result RemoveItem(BoardItem entry) => this.currentBoard.RemoveItem(entry);

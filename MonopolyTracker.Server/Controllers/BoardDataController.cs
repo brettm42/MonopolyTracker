@@ -20,9 +20,9 @@ namespace MonopolyTracker.Server.Controllers
         //public BoardDataController(IBoardService service, IFileProvider fileProvider)
         public BoardDataController(IBoardService service)
         {
-            this.boardService = service;
-            //this.fileProvider = fileProvider;
+            this.boardService = service;    
 
+            //this.fileProvider = fileProvider;
             //this.boardService.SetServiceDirectory(
                 //this.fileProvider.GetFileInfo(@"./Resources/BoardService"));
         }

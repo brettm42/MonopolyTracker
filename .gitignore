@@ -2,7 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/MonopolyTracker/v16
+/.vs/MonopolyTracker
 /MonopolyTracker.Client/obj
 /MonopolyTracker.Server/obj
 /MonopolyTracker.Shared/obj
+/MonopolyTracker.Client/bin
+/MonopolyTracker.Server/bin
+/MonopolyTracker.Shared/bin

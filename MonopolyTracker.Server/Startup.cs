@@ -12,9 +12,9 @@ namespace MonopolyTracker.Server
 
     public class Startup
     {
-        private readonly IHostingEnvironment environment;
+        private readonly IWebHostEnvironment environment;
 
-        public Startup (IHostingEnvironment environment)
+        public Startup (IWebHostEnvironment environment)
         {
             this.environment = environment;
         }
