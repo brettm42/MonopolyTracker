@@ -1,0 +1,95 @@
+﻿@page "/fetchdata"
+@using MonopolyTracker.Shared.Models
+@inject HttpClient Http
+
+<h1>Monopoly Board Tracker</h1>
+
+<p>Current items on your monopoly board.</p>
+
+@if (this.boardItems is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>On Board</th>
+                <th>Count</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in this.boardItems)
+            {
+                <tr @key(item)>
+                    <td>@item.Name</td>
+                    <td>@IsOnBoard(item)</td>
+                    <td>@item.Count</td>
+                    <td>@item.Image</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary" onclick="@AddTicketAsync">Add Ticket</button>
+
+    <button class="btn btn-primary" onclick="@RemoveTicketAsync">Remove Ticket</button>
+
+    <button class="btn btn-primary" onclick="@CacheBoardAsync">Save Board</button>
+
+    <button class="btn btn-primary" onclick="@AddImageAsync">Ticket Image</button>
+}
+
+@functions {
+    private const string ControllerApi = "api/BoardData";
+
+    BoardItem[] boardItems;
+
+    protected override async Task OnInitAsync()
+    {
+        //this.boardItems = BoardService.GetEntries();
+        this.boardItems = await Http.GetJsonAsync<BoardItem[]>($"{ControllerApi}/GetBoardItems");
+        //this.RefreshBoardAsync();
+    }
+
+    private async Task AddTicketAsync()
+    {
+        Console.WriteLine(
+            await Http.GetJsonAsync<Result>($"{ControllerApi}/AddTicket"));
+
+        await this.RefreshBoardAsync();
+    }
+
+    private async Task AddImageAsync()
+    {
+        Console.WriteLine(
+            await Http.GetJsonAsync<Result>($"{ControllerApi}/AddTicketImage"));
+
+        await this.RefreshBoardAsync();
+    }
+
+    private async Task RemoveTicketAsync()
+    {
+        Console.WriteLine(
+            await Http.GetJsonAsync<Result>($"{ControllerApi}/RemoveTicket/0"));
+
+        await this.RefreshBoardAsync();
+    }
+
+    private async Task CacheBoardAsync()
+    {
+        Console.WriteLine(
+            await Http.GetJsonAsync<Result>($"{ControllerApi}/CacheBoard"));
+    }
+
+    private async Task RefreshBoardAsync()
+    {
+        this.boardItems = 
+            await Http.GetJsonAsync<BoardItem[]>($"{ControllerApi}/GetBoardItems");
+    }
+
+    private string IsOnBoard(BoardItem item) => item.OnBoard ? "Got it" : "Nope";
+}
