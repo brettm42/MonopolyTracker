@@ -40,8 +40,20 @@ namespace MonopolyTracker.Server.Controllers
                 });
 
         [HttpGet("[action]")]
-        public Result AddTicketImage() =>
-            this.boardService.AddItemImage(ResourcesPath + "/test.jpg");
+        public Result AddTicketImage1() =>
+            this.boardService.AddItemImage(ResourcesPath + @"\test1.jpg");
+
+        [HttpGet("[action]")]
+        public Result AddTicketImage2() =>
+            this.boardService.AddItemImage(ResourcesPath + @"\test2.jpg");
+
+        [HttpGet("[action]")]
+        public Result AddTicketImage3() =>
+            this.boardService.AddItemImage(ResourcesPath + @"\test3.jpg");
+
+        [HttpGet("[action]")]
+        public Result AddTicketImage4() =>
+            this.boardService.AddItemImage(ResourcesPath + @"\test4.jpg");
 
         [HttpGet("[action]")]
         [Route("api/[controller]/[action]/{id}")]
