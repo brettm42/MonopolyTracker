@@ -10,6 +10,7 @@ namespace MonopolyTracker.Server.Services.BoardService
 
     public class Board
     {
+        const int EntryNameMaxLength = 5;
         private readonly List<BoardItem> entries = new List<BoardItem>();
 
         public Board(string[] entries)
@@ -29,9 +30,14 @@ namespace MonopolyTracker.Server.Services.BoardService
 
         public Result AddItem(BoardItem entry)
         {
-            if (entry is null)
+            if (entry is null || string.IsNullOrWhiteSpace(entry.Name))
             {
                 return new Result { Successful = false, Message = $"Tried to add {entry} to board" };
+            }
+
+            if (entry.Name.Length > EntryNameMaxLength)
+            {
+                return new Result { Successful = false, Message = $"Tried to add {entry} to board but name exceeded {EntryNameMaxLength} limit" };
             }
 
             var existingItem = this.entries.FirstOrDefault(i => i.Equals(entry));

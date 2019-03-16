@@ -8,6 +8,7 @@ namespace MonopolyTracker.Server.Services.BoardService
     using MonopolyTracker.Shared.Data;
     using MonopolyTracker.Shared.Models;
     using static MonopolyTracker.Shared.Constants;
+    using static MonopolyTracker.Shared.Data.TextHandler;
 
     public class BoardService : IBoardService
     {
@@ -56,7 +57,7 @@ namespace MonopolyTracker.Server.Services.BoardService
 
         public Result AddItemImage(string filePath)
         {
-            var test = 
+            var ocrText = 
                 ImageClient.GetImageText(
                     new Entry
                     {
@@ -64,9 +65,17 @@ namespace MonopolyTracker.Server.Services.BoardService
                         Contents = filePath,
                     });
 
-            Console.WriteLine(test);
+            Console.WriteLine(ocrText);
 
-            return new Result { Successful = test.Result.Successful, Message = test.Text + test.Result.Message };
+            var itemName = NormalizeText(ocrText.Text);
+
+            return this.currentBoard.AddItem(
+                new BoardItem
+                {
+                    Name = itemName,
+                    Count = 1,
+                    Image = filePath,
+                });
         }
 
         public Result RemoveItem(BoardItem entry) => this.currentBoard.RemoveItem(entry);

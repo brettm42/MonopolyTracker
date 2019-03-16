@@ -35,7 +35,7 @@ namespace MonopolyTracker.Server.Controllers
             this.boardService.AddItem(
                 new Entry
                 {
-                    Name = $"test{DateTime.Now.Second}",
+                    Name = $"tst{DateTime.Now.Second}",
                     Contents = $"ImgData{DateTime.Now.Day}.png",
                 });
 

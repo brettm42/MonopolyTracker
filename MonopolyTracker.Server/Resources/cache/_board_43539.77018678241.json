@@ -1,0 +1,37 @@
+[
+  {
+    "Name": "test1",
+    "Image": "Mild.png",
+    "Count": 0
+  },
+  {
+    "Name": "test2",
+    "Image": "Sweltering.png",
+    "Count": 0
+  },
+  {
+    "Name": "test3",
+    "Image": "Cool.png",
+    "Count": 4
+  },
+  {
+    "Name": "test4",
+    "Image": "Cool.png",
+    "Count": 1
+  },
+  {
+    "Name": "test5",
+    "Image": "Bracing.png",
+    "Count": 3
+  },
+  {
+    "Name": "tst20",
+    "Image": "ImgData15.png",
+    "Count": 1
+  },
+  {
+    "Name": "343EJ",
+    "Image": "E:\\Repos\\GitHub\\MonopolyTracker\\MonopolyTracker.Server\\Resources\\test4.jpg",
+    "Count": 1
+  }
+]
